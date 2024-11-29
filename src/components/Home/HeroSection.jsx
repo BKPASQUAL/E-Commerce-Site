@@ -5,7 +5,6 @@ function HeroSection() {
   return (
     <div>
         <Navbar/>
-      scdsdc HADSC  d
     </div>
   )
 }

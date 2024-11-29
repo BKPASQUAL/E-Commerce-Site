@@ -6,9 +6,30 @@ function Navbar() {
       <div className="flex-1 text-start text-2xl font-bold text-yellow-700">
         ClouthingMart
       </div>
-      {/* <div className="flex-1 text-center">dcb cdhehbci</div> */}
+      <div className="flex-1 flex justify-start space-x-6">
+        <p className="text-red-700 font-semibold relative group cursor-pointer">
+          SALE
+          <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-red-700 transition-all duration-300 group-hover:w-full"></span>
+        </p>
+        <p className="font-semibold relative group cursor-pointer">
+          MALE
+          <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full"></span>
+        </p>
+        <p className="font-semibold relative group cursor-pointer">
+          WOMEN
+          <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full"></span>
+        </p>
+        <p className="font-semibold relative group cursor-pointer">
+          KIDS
+          <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full"></span>
+        </p>
+        <p className="relative group cursor-pointer">
+          SPORTS
+          <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full"></span>
+        </p>
+      </div>
       <div className="flex-1 flex justify-end items-center space-x-4">
-        <h1 className="text-lg">Login</h1>
+        <h1 className="text-lg font-bold">Login</h1>
         <span className="material-symbols-outlined text-2xl">shopping_bag</span>
       </div>
     </div>
