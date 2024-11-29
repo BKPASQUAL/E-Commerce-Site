@@ -6,7 +6,6 @@ function Home() {
   return (
     <div>
       <HeroSection/>
-      <Collection/>
     </div>
   )
 }
