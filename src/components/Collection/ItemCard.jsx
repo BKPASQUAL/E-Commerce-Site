@@ -15,17 +15,14 @@ function ItemCard({ id, name, price, image, category }) {
       const updatedItems = [...existingItems, itemDetails];
       localStorage.setItem("cartItems", JSON.stringify(updatedItems));
 
-      // Dispatch a custom event to update the cart count in other components
       window.dispatchEvent(new Event("cartUpdated"));
 
-      // Show success alert
       setAlert({
         type: "success",
         message: `${name} has been added to your cart!`,
         visible: true,
       });
     } else {
-      // Show warning alert
       setAlert({
         type: "warning",
         message: `${name} is already in your cart!`,
@@ -33,10 +30,10 @@ function ItemCard({ id, name, price, image, category }) {
       });
     }
 
-    // Automatically hide the alert after 3 seconds
+    // Auto-hide alert after 3 seconds
     setTimeout(() => {
       setAlert({ ...alert, visible: false });
-    }, 3000);
+    }, 1000);
   };
 
   return (
@@ -64,22 +61,18 @@ function ItemCard({ id, name, price, image, category }) {
         </div>
       </div>
 
-      {/* MUI Alert positioned in the top-right corner */}
+      {/* Alert positioned at the center top */}
       <div
         style={{
           position: "fixed",
           top: "20px",
-          right: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
           zIndex: 1000,
         }}
       >
         <Collapse in={alert.visible}>
-          <Alert
-            severity={alert.type}
-            onClose={() => setAlert({ ...alert, visible: false })}
-          >
-            {alert.message}
-          </Alert>
+          <Alert severity={alert.type}>{alert.message}</Alert>
         </Collapse>
       </div>
     </div>
