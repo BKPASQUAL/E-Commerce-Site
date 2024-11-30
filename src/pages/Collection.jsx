@@ -4,7 +4,7 @@ import Navbar from "../components/common/Navbar";
 import mockData from "../assets/data/mockdata";
 
 function Collection() {
-  const visibleItems = mockData; 
+  const visibleItems = mockData;
 
   return (
     <>
@@ -14,6 +14,7 @@ function Collection() {
           {visibleItems.map((item) => (
             <ItemCard
               key={item.id}
+              id={item.id}
               name={item.name}
               price={item.price}
               image={item.image}
