@@ -2,9 +2,9 @@ import React from "react";
 
 function ItemCard({ name, price, image, category }) {
   return (
-    <div className="w-80 h-auto bg-slate-50">
+    <div className="w-80 h-auto bg-slate-50 rounded-xl">
       <div>
-        <img src={image} alt={name} className="h-full object-cover" />
+        <img src={image} alt={name} className="h-full object-cover rounded-xl" />
       </div>
 
       <div className="h-24 pl-4 pr-4 pt-2">
