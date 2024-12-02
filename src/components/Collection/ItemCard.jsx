@@ -61,7 +61,6 @@ function ItemCard({ id, name, price, image, category }) {
         </div>
       </div>
 
-      {/* Alert positioned at the center top */}
       <div
         style={{
           position: "fixed",
