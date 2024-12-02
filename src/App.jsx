@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import "./index.css"
 import Collection from "./pages/Collection";
 import Login from "./pages/Login";
+import SingUp from "./pages/SingUp";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/SingUp" element={<SingUp />} />
           <Route path="/" element={<Collection />} />
         </Routes>
       </div>

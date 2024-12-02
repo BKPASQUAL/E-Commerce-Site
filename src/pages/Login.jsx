@@ -6,7 +6,7 @@ function Login() {
   return (
     <div className="w-full h-screen bg-slate-300 flex justify-center items-center">
       <div className="bg-white w-1/4 h-3/5 rounded-lg	 p-6">
-        <div> LogIn</div>
+        <div className="text-center text-3xl font-bold mb-6"> LogIn</div>
         <div className="flex flex-col space-y-8">
           <TextField
             color="#fff"
@@ -37,7 +37,7 @@ function Login() {
           </Button>
         </div>
         <div className="text-center">
-          Don't have an account? <a href="/Login">Create an account</a>
+          Don't have an account? <a href="/SingUp">Create an account</a>
         </div>
       </div>
     </div>
