@@ -1,3 +1,4 @@
+// src/pages/Login.jsx
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -5,9 +6,11 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -29,19 +32,9 @@ function Login() {
         const { email, password } = storedData;
 
         if (values.email === email && values.password === password) {
+          login({ email });
           navigate("/");
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            },
-          });
-          Toast.fire({
+          Swal.fire({
             icon: "success",
             title: "Welcome to ShoesMart!",
           });
@@ -50,7 +43,6 @@ function Login() {
             icon: "error",
             title: "Login Failed!",
             text: "Invalid email or password. Please try again.",
-            showConfirmButton: true,
           });
         }
       } else {
@@ -58,7 +50,6 @@ function Login() {
           icon: "error",
           title: "No Account Found",
           text: "Please sign up first.",
-          showConfirmButton: true,
         });
       }
     },
@@ -133,5 +124,4 @@ function Login() {
     </div>
   );
 }
-
 export default Login;

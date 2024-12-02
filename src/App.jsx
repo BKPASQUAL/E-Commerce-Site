@@ -1,25 +1,37 @@
+// src/App.jsx
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
-import "./index.css"
-import Collection from "./pages/Collection";
 import Login from "./pages/Login";
-import SingUp from "./pages/SingUp";
+import Collection from "./pages/Collection";
+import ProtectedRoute from "./components/ProtectedRoute";
+import SignUp from "./pages/SingUp";
+import "./index.css"
 
 function App() {
-
   return (
-    <div>
-      <div >
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/SingUp" element={<SingUp />} />
-          <Route path="/" element={<Collection />} />
-        </Routes>
-      </div>
-    </div>
-  )
+    <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+              <Collection />
+          }
+        />
+      </Routes>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

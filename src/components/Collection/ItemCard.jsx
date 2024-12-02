@@ -1,12 +1,33 @@
 import React, { useState } from "react";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function ItemCard({ id, name, price, image, category }) {
+  const { user } = useAuth(); 
   const [alert, setAlert] = useState({ type: "", message: "", visible: false });
+  const navigate = useNavigate();
+ 
 
   const handleAddToCart = () => {
-    const itemDetails = { id, name, image };
+    if (!user) {
+      setAlert({
+        type: "error",
+        message: "You must be logged in to add items to the cart!",
+        visible: true,
+      });
+      navigate("/login");
+
+
+      setTimeout(() => {
+        setAlert({ ...alert, visible: false });
+      }, 6000);
+
+      return; 
+    }
+
+    const itemDetails = { id, name, price, image };
 
     const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     const isItemAlreadyInCart = existingItems.some((item) => item.id === id);
@@ -30,10 +51,9 @@ function ItemCard({ id, name, price, image, category }) {
       });
     }
 
-    // Auto-hide alert after 3 seconds
     setTimeout(() => {
       setAlert({ ...alert, visible: false });
-    }, 1000);
+    }, 3000);
   };
 
   return (
