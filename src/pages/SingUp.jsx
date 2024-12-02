@@ -3,6 +3,8 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
 import { Button, Divider } from "@mui/material";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object({
   firstName: Yup.string()
@@ -23,6 +25,24 @@ const validationSchema = Yup.object({
 });
 
 function SignUp() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (values, { resetForm, setSubmitting }) => {
+    localStorage.setItem("signupData", JSON.stringify(values));
+
+    Swal.fire({
+      icon: "success",
+      title: "Sign Up Successful!",
+      text: "Your account has been created successfully.",
+      showConfirmButton: false,
+      timer: 2000,
+    }).then(() => {
+      navigate("/login");
+      resetForm();
+      setSubmitting(false);
+    });
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-100 px-4">
       <div className="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 md:p-8">
@@ -39,10 +59,7 @@ function SignUp() {
             confirmPassword: "",
           }}
           validationSchema={validationSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log("Form Data:", values);
-            setSubmitting(false);
-          }}
+          onSubmit={handleSubmit}
         >
           {({ errors, touched, isSubmitting }) => (
             <Form className="flex flex-col space-y-4" autoComplete="off">
