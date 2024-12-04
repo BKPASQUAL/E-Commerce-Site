@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ItemCard from "../components/Collection/ItemCards";
+import ItemCard from "../components/Collection//ItemCards";
 import Navbar from "../components/common/Navbar";
 import mockData from "../assets/data/mockdata";
 import ItemDetailsModal from "../components/collection/ItemDetailsModal";
