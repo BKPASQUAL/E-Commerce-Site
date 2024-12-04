@@ -56,11 +56,11 @@ function Navbar() {
         cancelButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.clear(); // Clear all local storage
-          setCartItemCount(0); // Reset cart item count
-          window.dispatchEvent(new Event("cartUpdated")); // Update cart state globally
-          logout(); // Log out the user
-          navigate("/"); // Redirect to home or login page
+          localStorage.clear(); 
+          setCartItemCount(0); 
+          window.dispatchEvent(new Event("cartUpdated")); 
+          logout(); 
+          navigate("/"); e
         }
       });
     } else {
