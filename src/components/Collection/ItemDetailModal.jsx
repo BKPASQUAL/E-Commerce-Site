@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function ItemDetailsModal({ item, onClose }) {
+function ItemDetailModal({ item, onClose }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -81,4 +81,4 @@ function ItemDetailsModal({ item, onClose }) {
   );
 }
 
-export default ItemDetailsModal;
+export default ItemDetailModal;

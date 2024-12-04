@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ItemCard from "../components/Collection//ItemCards";
 import Navbar from "../components/common/Navbar";
 import mockData from "../assets/data/mockdata";
-import ItemDetailsModal from "../components/collection/ItemDetailsModal";
+import ItemDetailsModal from "../components/Collection/ItemDetailModal";
 
 function Collection() {
   const [selectedItem, setSelectedItem] = useState(null);
