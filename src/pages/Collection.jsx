@@ -34,8 +34,11 @@ function Collection() {
             onChange={(e) => setFilterCategory(e.target.value)}
           >
             <option value="">All Categories</option>
-            <option value="Footwear">Footwear</option>
             <option value="Running">Running</option>
+            <option value="Football">Football</option>
+            <option value="Basketball">Basketball</option>
+            <option value="Footwear">Footwear</option>
+            <option value="Gym & Training Shoes">Gym & Training Shoes</option>
           </select>
           <input
             type="text"

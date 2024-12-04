@@ -88,11 +88,11 @@ function ItemCards({ item, onClick }) {
           <p className="font-medium md:font-bold md:text-lg">LKR {item.price}/=</p>
         </div>
         <div className="mt-4 flex justify-between items-center">
-          <p className="text-sm text-slate-400">{item.availability} In Stock</p>
+          <p className="text-sm text-slate-400">{item.category} Shoes</p>
           <span
             className="material-symbols-outlined cursor-pointer text-xl sm:text-2xl text-blue-600 hover:text-blue-800 transition"
             onClick={(e) => {
-              e.stopPropagation(); // Prevent modal opening
+              e.stopPropagation(); 
               handleAddToCart();
             }}
           >
