@@ -241,6 +241,18 @@ const mockData = [
       "https://assets.adidas.com/images/w_1880,f_auto,q_auto/33a6f564cd1a42f68b40a9e5c1a06f56_9366/FY3419_01_standard.jpg",
       "https://assets.adidas.com/images/w_1880,f_auto,q_auto/f301f12d4a474bc9986f1fead0550e3a_9366/FY3419_02_standard.jpg",
     ],
+  },
+  {
+    id: 21,
+    name: "Predator Accuracy+",
+    price: 38000,
+    category: "Running",
+    availability: 5,
+    description: "Football boots engineered for control and accuracy on the pitch.",
+    images: [
+      "https://assets.adidas.com/images/w_1880,f_auto,q_auto/33a6f564cd1a42f68b40a9e5c1a06f56_9366/FY3419_01_standard.jpg",
+      "https://assets.adidas.com/images/w_1880,f_auto,q_auto/f301f12d4a474bc9986f1fead0550e3a_9366/FY3419_02_standard.jpg",
+    ],
   }
 ];
 
