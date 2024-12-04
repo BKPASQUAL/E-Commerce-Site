@@ -100,8 +100,6 @@ function ItemCards({ item, onClick }) {
           </span>
         </div>
       </div>
-
-      {/* Alert Section */}
       <div className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 max-w-md w-full px-4 sm:px-0">
         <Collapse in={alert.visible}>
           <Alert

@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import Cart from "../../pages/Cart";
 
 function Navbar() {
@@ -6,11 +9,11 @@ function Navbar() {
   const [cartItemCount, setCartItemCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
   const toggleCart = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
     setCartOpen(open);
@@ -40,19 +43,38 @@ function Navbar() {
     };
   }, []);
 
+  const handleAuthClick = () => {
+    if (user) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to log out? Your cart will be cleared.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, log me out!",
+        cancelButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear(); // Clear all local storage
+          setCartItemCount(0); // Reset cart item count
+          window.dispatchEvent(new Event("cartUpdated")); // Update cart state globally
+          logout(); // Log out the user
+          navigate("/"); // Redirect to home or login page
+        }
+      });
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <nav className="h-16 w-full shadow-md fixed bg-white z-50">
       <div className="flex justify-between items-center px-4 h-full lg:px-12">
-        {/* Logo */}
         <div className="text-2xl font-bold text-yellow-700">ShoesMart</div>
-
-        {/* Desktop Menu */}
         <div className="hidden lg:flex space-x-6">
           {["SALE", "MALE", "WOMEN", "KIDS", "SPORTS"].map((link) => (
-            <p
-              key={link}
-              className="font-semibold relative group cursor-pointer"
-            >
+            <p key={link} className="font-semibold relative group cursor-pointer">
               {link}
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full"></span>
             </p>
@@ -60,9 +82,13 @@ function Navbar() {
         </div>
 
         <div className="flex space-x-6">
-          {/* Cart and Login */}
           <div className="flex items-center space-x-4">
-            <h1 className="text-lg font-bold hidden lg:block">Login</h1>
+            <h1
+              className="text-lg font-bold cursor-pointer hidden lg:block"
+              onClick={handleAuthClick}
+            >
+              {user ? "Logout" : "Login"}
+            </h1>
             <div className="relative">
               <span
                 className="material-symbols-outlined text-2xl cursor-pointer"
@@ -81,9 +107,6 @@ function Navbar() {
             </div>
             <Cart open={cartOpen} toggleDrawer={toggleCart} />
           </div>
-          
-
-          {/* Hamburger Menu for Mobile */}
           <div className="md:hidden z-50">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -100,8 +123,6 @@ function Navbar() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
       <div
         className={`fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center transform transition-transform duration-500 ease-in-out ${
           menuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
@@ -111,7 +132,7 @@ function Navbar() {
           {["SALE", "MALE", "WOMEN", "KIDS", "SPORTS"].map((link) => (
             <p
               key={link}
-              className="cursor-pointer hover:text-pnk transition-colors"
+              className="cursor-pointer hover:text-pink transition-colors"
               onClick={() => setMenuOpen(false)}
             >
               {link}
@@ -119,9 +140,9 @@ function Navbar() {
           ))}
           <h1
             className="text-lg font-bold cursor-pointer"
-            onClick={() => setMenuOpen(false)}
+            onClick={handleAuthClick}
           >
-            Login
+            {user ? "Logout" : "Login"}
           </h1>
         </div>
       </div>
